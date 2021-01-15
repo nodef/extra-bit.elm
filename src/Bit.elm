@@ -209,9 +209,9 @@ scan x =
 Gets index of first set bit from MSB.
     
     -- x: an Int
-    scanReverse 13 == 13 (1101 => 3)
-    scanReverse 5  == 2  (101  => 2)
-    scanReverse 1  == 0  (1    => 0)
+    scanReverse 13 == 3 (1101 => 3)
+    scanReverse 5  == 2 (101  => 2)
+    scanReverse 1  == 0 (1    => 0)
 -}
 scanReverse : Int -> Int
 scanReverse x =
@@ -267,8 +267,8 @@ Sign extend variable bit-width integer.
 -}
 signExtend : Int -> Int -> Int
 signExtend x w =
-  let u = 32-w in
-  shiftRightBy w (shiftLeftBy w x)
+  let msb = and x (shiftLeftBy (w-1) 1) in
+  if msb==0 then x else or (complement (and -1 ((shiftLeftBy w 1) - 1))) x
 
 
 

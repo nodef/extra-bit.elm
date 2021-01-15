@@ -127,11 +127,11 @@ scanTests =
 scanReverseTests : Test
 scanReverseTests =
   describe "scanReverse x" [
-    test "scanReverse 13 == 13 (1101 => 3)" <|
-      \_ -> scanReverse 13 |> equal 13,
-    test "scanReverse 5  == 2  (101  => 2)" <|
+    test "scanReverse 13 == 3 (1101 => 3)" <|
+      \_ -> scanReverse 13 |> equal 3,
+    test "scanReverse 5  == 2 (101  => 2)" <|
       \_ -> scanReverse 5 |> equal 2,
-    test "scanReverse 1  == 0  (1    => 0)" <|
+    test "scanReverse 1  == 0 (1    => 0)" <|
       \_ -> scanReverse 1 |> equal 0
   ]
 
