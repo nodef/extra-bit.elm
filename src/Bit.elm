@@ -6,6 +6,9 @@ module Bit exposing (
 The bit is a basic unit of information in information theory, computing.
 This package includes bit twiddling hacks by Sean Eron Anderson and many
 others.
+
+@docs count, get, getAs, interleave, merge, parity, reverse, rotate
+@docs scan, scanReverse, set, setAs, signExtend, swap, toggle, toggleAs
 -}
 
 import Basics exposing (remainderBy)
