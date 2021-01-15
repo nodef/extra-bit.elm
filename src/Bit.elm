@@ -132,8 +132,8 @@ Get n-bit parity.
     
     -- x: an Int
     -- n: number of bits (1)
-    parity 7    == 1  (1,1,1   => 1)
-    parity 5    == 0  (1,0,1   => 0)
+    parity 7 1  == 1  (1,1,1   => 1)
+    parity 5 1  == 0  (1,0,1   => 0)
     parity 8 2  == 2  (10,00   => 10)
     parity 63 4 == 12 (11,1111 => 1100)
 -}
@@ -262,8 +262,8 @@ Sign extend variable bit-width integer.
     -- x: variable bit-width Int
     -- w: bit width (32)
     signExtend 15 4 == -1 (1111 => -1)
-    signExtend 3 3  == 3  (011 => 3)
-    signExtend 4 3  == -4 (100 => -4)
+    signExtend 3 3  == 3  (011  => 3)
+    signExtend 4 3  == -4 (100  => -4)
 -}
 signExtend : Int -> Int -> Int
 signExtend x w =

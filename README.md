@@ -1,4 +1,4 @@
-The bit is a basic unit of information in information theory, computing.
+The bit is a basic unit of information in information theory, computing.<br>
 :package: [Package](https://package.elm-lang.org/packages/elmw/extra-bit/latest/),
 :blue_book: [Wiki](https://github.com/elmw/extra-bit/wiki).
 
