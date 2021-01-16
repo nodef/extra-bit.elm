@@ -1,6 +1,5 @@
 The bit is a basic unit of information in information theory, computing.<br>
-:package: [Package](https://package.elm-lang.org/packages/elmw/extra-bit/latest/),
-:blue_book: [Wiki](https://github.com/elmw/extra-bit/wiki).
+:package: [Package](https://package.elm-lang.org/packages/elmw/extra-bit/latest/).
 
 <br>
 
@@ -54,20 +53,20 @@ signExtend 15 4
 | [signExtend] | Sign extends variable bit-width integer. |
 
 
-[get]: https://github.com/elmw/extra-bit/wiki/get
-[set]: https://github.com/elmw/extra-bit/wiki/set
-[setAs]: https://github.com/elmw/extra-bit/wiki/setAs
-[swap]: https://github.com/elmw/extra-bit/wiki/swap
-[scan]: https://github.com/elmw/extra-bit/wiki/scan
-[scanReverse]: https://github.com/elmw/extra-bit/wiki/scanReverse
-[count]: https://github.com/elmw/extra-bit/wiki/count
-[parity]: https://github.com/elmw/extra-bit/wiki/parity
-[reverse]: https://github.com/elmw/extra-bit/wiki/reverse
-[merge]: https://github.com/elmw/extra-bit/wiki/merge
-[interleave]: https://github.com/elmw/extra-bit/wiki/interleave
-[signExtend]: https://github.com/elmw/extra-bit/wiki/signExtend
-[toggle]: https://github.com/elmw/extra-bit/wiki/toggle
-[rotate]: https://github.com/elmw/extra-bit/wiki/rotate
+[get]: https://package.elm-lang.org/packages/elmw/extra-bit/latest/Bit#get
+[set]: https://package.elm-lang.org/packages/elmw/extra-bit/latest/Bit#set
+[setAs]: https://package.elm-lang.org/packages/elmw/extra-bit/latest/Bit#setAs
+[swap]: https://package.elm-lang.org/packages/elmw/extra-bit/latest/Bit#swap
+[scan]: https://package.elm-lang.org/packages/elmw/extra-bit/latest/Bit#scan
+[scanReverse]: https://package.elm-lang.org/packages/elmw/extra-bit/latest/Bit#scanReverse
+[count]: https://package.elm-lang.org/packages/elmw/extra-bit/latest/Bit#count
+[parity]: https://package.elm-lang.org/packages/elmw/extra-bit/latest/Bit#parity
+[reverse]: https://package.elm-lang.org/packages/elmw/extra-bit/latest/Bit#reverse
+[merge]: https://package.elm-lang.org/packages/elmw/extra-bit/latest/Bit#merge
+[interleave]: https://package.elm-lang.org/packages/elmw/extra-bit/latest/Bit#interleave
+[signExtend]: https://package.elm-lang.org/packages/elmw/extra-bit/latest/Bit#signExtend
+[toggle]: https://package.elm-lang.org/packages/elmw/extra-bit/latest/Bit#toggle
+[rotate]: https://package.elm-lang.org/packages/elmw/extra-bit/latest/Bit#rotate
 
 <br>
 <br>
