@@ -1,0 +1,9 @@
+language: elm
+
+install:
+- git clone https://${GITHUB_TOKEN}@github.com/elmw/deploy "$HOME/deploy"
+- chmod 777 "$HOME/deploy/"*.sh
+- bash "$HOME/deploy/install.sh"
+
+script:
+- bash "$HOME/deploy/script.sh"
