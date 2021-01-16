@@ -1,4 +1,5 @@
 language: elm
+if: branch = main
 
 install:
 - git clone https://${GITHUB_TOKEN}@github.com/elmw/deploy "$HOME/deploy"
