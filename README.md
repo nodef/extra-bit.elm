@@ -22,7 +22,7 @@ count 7
 parity 8 2
 -- 2 (10,00 => 10)
 
-swap 6 1 0
+swap 6 1 0 1
 -- 5 (110 => 101)
 
 reverse 0xFFFF0000
@@ -38,20 +38,20 @@ signExtend 15 4
 
 ## Index
 
-| Method       | Action                                   |
-| ------------ | ---------------------------------------- |
-| [get]        | Gets a bit.                              |
-| [set]        | Sets a bit.                              |
-| [toggle]     | Toggles a bit.                           |
-| [swap]       | Swaps bit sequences.                     |
-| [scan]       | Gets index of first set bit from LSB.    |
-| [count]      | Counts bits set.                         |
-| [parity]     | Gets n-bit parity.                       |
-| [rotate]     | Rotates bits.                            |
-| [reverse]    | Reverses all bits.                       |
-| [merge]      | Merges bits as per mask.                 |
-| [interleave] | Interleaves bits of two int16s.          |
-| [signExtend] | Sign extends variable bit-width integer. |
+| Method       | Action                                  |
+| ------------ | --------------------------------------- |
+| [get]        | Get a bit.                              |
+| [set]        | Set a bit.                              |
+| [toggle]     | Toggle a bit.                           |
+| [swap]       | Swap bit sequences.                     |
+| [scan]       | Get index of first set bit from LSB.    |
+| [count]      | Count bits set.                         |
+| [parity]     | Get n-bit parity.                       |
+| [rotate]     | Rotate bits.                            |
+| [reverse]    | Reverse all bits.                       |
+| [merge]      | Merge bits as per mask.                 |
+| [interleave] | Interleave bits of two int16s.          |
+| [signExtend] | Sign extend variable bit-width integer. |
 
 [get]: https://github.com/elmw/extra-bit/wiki/get
 [set]: https://github.com/elmw/extra-bit/wiki/set
