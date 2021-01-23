@@ -5,7 +5,9 @@ module Bit exposing (
 {-|
 The bit is a basic unit of information in information theory, computing.
 This package includes bit twiddling hacks by Sean Eron Anderson and many
-others.
+others.\
+📦 [Package](https://package.elm-lang.org/packages/elmw/extra-boolean/latest/),
+📘 [Wiki](https://github.com/elmw/extra-boolean/wiki).
 
 @docs count, get, getAs, interleave, merge, parity, reverse, rotate
 @docs scan, scanReverse, set, setAs, signExtend, swap, toggle, toggleAs
@@ -18,10 +20,11 @@ import Bitwise exposing (shiftRightBy)
 
 
 
--- Global data
+
+-- CONSTANTS
 debruijnPos32 : Array Int
 debruijnPos32 = fromList [
-    0,  9,  1, 10, 13, 21,  2, 29, 11, 14, 16, 18, 22, 25,  3, 30, 
+    0,  9,  1, 10, 13, 21,  2, 29, 11, 14, 16, 18, 22, 25,  3, 30,
     8, 12, 20, 28, 15, 17, 24,  7, 19, 27, 23,  6, 26,  5,  4, 31
   ]
 
@@ -32,7 +35,9 @@ mod37Pos32 = fromList [
   ]
 
 
--- Helper functions
+
+
+-- HELPER FUNCTIONS
 bxor : Int -> Int -> Int
 bxor = Bitwise.xor
 
@@ -42,9 +47,117 @@ arrayGet d i x =
 
 
 
+
+-- GET*, SET*, TOGGLE*, SWAP
+{-|
+Get a bit.
+
+    -- x: an Int
+    -- i: bit index
+    get 6 0 == 0 (110,0 => 0)
+    get 6 1 == 1 (110,1 => 1)
+    get 6 2 == 1 (110,2 => 1)
+-}
+get : Int -> Int -> Int
+get x i =
+  and (shiftRightZfBy i x) 1
+
+
+{-|
+Get bits as per mask.
+
+    -- x: an Int
+    -- m: bit mask
+    getAs 6 4 == 4 (110,100 => 100)
+    getAs 6 7 == 6 (110,111 => 110)
+    getAs 6 5 == 4 (110,101 => 100)
+-}
+getAs : Int -> Int -> Int
+getAs x m =
+  and x m
+
+
+{-|
+Set a bit.
+
+    -- x: an Int
+    -- i: bit index
+    -- f: bit value (1)
+    set 6 0 1 == 7 (110,0,1 => 111)
+    set 6 2 1 == 6 (110,2,1 => 110)
+    set 6 2 0 == 2 (110,2,0 => 010)
+-}
+set : Int -> Int -> Int -> Int
+set x i f =
+  or (and x (complement (shiftLeftBy i 1))) (shiftLeftBy i f)
+
+
+{-|
+Set bits as per mask.
+
+    -- x: an Int
+    -- m: bit mask
+    -- f: bit value (1)
+    setAs 8 2 1          == 10   (0x8 set 0x2      => 0xA)
+    setAs 15 3 0         == 12   (0xF clear 0x3    => 0xC)
+    setAs 0x1234 0x430 1 == 5684 (0x1234 set 0x430 => 0x1634)
+-}
+setAs : Int -> Int -> Int -> Int
+setAs x m f =
+  or (and x (complement m)) (and (-f) m)
+
+
+{-|
+Toggle a bit.
+
+    -- x: an Int
+    -- i: bit index
+    toggle 6 0 == 7 (110,0 => 111)
+    toggle 6 1 == 4 (110,1 => 100)
+    toggle 6 2 == 2 (110,2 => 010)
+-}
+toggle : Int -> Int -> Int
+toggle x i =
+  bxor x (shiftLeftBy i 1)
+
+
+{-|
+Toggle bits as per mask.
+
+    -- x: an Int
+    -- m: bit mask
+    toggleAs 6 1 == 7 (110,000 => 111)
+    toggleAs 6 7 == 1 (110,111 => 001)
+    toggleAs 6 3 == 5 (110,011 => 101)
+-}
+toggleAs : Int -> Int -> Int
+toggleAs x m =
+  bxor x m
+
+
+{-|
+Swap bit sequences.
+
+    -- x: an Int
+    -- i: first bit index
+    -- j: second bit index
+    -- n: bit width (1)
+    swap 6 1 0 1      == 5     (110    => 101)
+    swap 0x1234 8 4 4 == 4900  (0x1234 => 0x1324)
+    swap 0x4AAB 8 0 8 == 43850 (0x4AAB => 0xAB4A)
+-}
+swap : Int -> Int -> Int -> Int -> Int
+swap x i j n =
+  let t = and (bxor (shiftRightZfBy i x) (shiftRightZfBy j x)) ((shiftLeftBy n 1) - 1) in
+  bxor x (or (shiftLeftBy i t) (shiftLeftBy j t))
+
+
+
+
+-- COUNT, PARITY, SCAN*
 {-|
 Count bits set.
-    
+
     -- x: an Int
     count 7  == 3 (111    => 3)
     count 12 == 2 (1100   => 2)
@@ -57,79 +170,9 @@ count x =
   shiftRightZfBy 24 ((and (b + (shiftRightZfBy 4 b)) 0x0F0F0F0F) * 0x01010101)
 
 
-
-{-|
-Get a bit.
-    
-    -- x: an Int
-    -- i: bit index
-    get 6 0 == 0 (110,0 => 0)
-    get 6 1 == 1 (110,1 => 1)
-    get 6 2 == 1 (110,2 => 1)
--}
-get : Int -> Int -> Int
-get x i =
-  and (shiftRightZfBy i x) 1
-
-
-
-{-|
-Get bits as per mask.
-    
-    -- x: an Int
-    -- m: bit mask
-    getAs 6 4 == 4 (110,100 => 100)
-    getAs 6 7 == 6 (110,111 => 110)
-    getAs 6 5 == 4 (110,101 => 100)
--}
-getAs : Int -> Int -> Int
-getAs x m =
-  and x m
-
-
-
-{-|
-Interleave bits of two Int16s.
-    
-    -- x: first Int16
-    -- y: second Int16
-    interleave 0x0000 0xFFFF == 1431655765 (0x55555555)
-    interleave 0x1234 0x1234 == 51121968   (0x030C0F30)
-    interleave 0x1234 0x4321 == 302845473  (0x120D0E21)
--}
-interleave : Int -> Int -> Int
-interleave x y =
-  let a = and (or x (shiftLeftBy 8 x)) 0x00FF00FF
-      b = and (or a (shiftLeftBy 4 a)) 0x0F0F0F0F
-      c = and (or b (shiftLeftBy 2 b)) 0x33333333
-      d = and (or c (shiftLeftBy 1 c)) 0x55555555
-      i = and (or y (shiftLeftBy 8 y)) 0x00FF00FF
-      j = and (or i (shiftLeftBy 4 i)) 0x0F0F0F0F
-      k = and (or j (shiftLeftBy 2 j)) 0x33333333
-      l = and (or k (shiftLeftBy 1 k)) 0x55555555 in
-  or l (shiftLeftBy 1 d)
-
-
-
-{-|
-Merge bits as per mask.
-    
-    -- x: first Int
-    -- y: second Int
-    -- m: bit mask (0 => from x)
-    merge 0x12 0x24 0x0F       == 20    (0x14)
-    merge 0x1234 0xABCD 0x0F0F == 6973  (0x1B3D)
-    merge 0xAAAA 0xBBBB 0x3333 == 48059 (0xBBBB)
--}
-merge : Int -> Int -> Int -> Int
-merge x y m =
-  bxor x (and (bxor x y) m)
-
-
-
 {-|
 Get n-bit parity.
-    
+
     -- x: an Int
     -- n: number of bits (1)
     parity 7 1  == 1  (1,1,1   => 1)
@@ -156,44 +199,9 @@ parityLoop a x n m =
   if x == 0 then a else parityLoop (bxor a (and x m)) (shiftRightZfBy n x) n m
 
 
-
-{-|
-Reverse all bits.
-    
-    -- x: an Int
-    reverse 0xFFFF0000 == 65535     (0x0000FFFF)
-    reverse 0x00AABBCC == 870143232 (0x33DD5500)
-    reverse 0x1234     == 742916096 (0x2C480000)
--}
-reverse : Int -> Int
-reverse x =
-  let a = or (and (shiftRightZfBy 1 x) 0x55555555) (shiftLeftBy 1 (and x 0x55555555))
-      b = or (and (shiftRightZfBy 2 a) 0x33333333) (shiftLeftBy 2 (and a 0x33333333))
-      c = or (and (shiftRightZfBy 4 b) 0x0F0F0F0F) (shiftLeftBy 4 (and b 0x0F0F0F0F))
-      d = or (and (shiftRightZfBy 8 c) 0x00FF00FF) (shiftLeftBy 8 (and c 0x00FF00FF)) in
-  or (shiftRightZfBy 16 d) (shiftLeftBy 16 d)
-
-
-
-{-|
-Rotate bits.
-    
-    -- x: an Int
-    -- n: rotate amount (+ve: left, -ve: right)
-    rotate 0x11112222 4  == 286401057 (0x11122221)
-    rotate 0x11112222 -4 == 554766882 (0x21111222)
--}
-rotate : Int -> Int -> Int
-rotate x n =
-  let neg = or (shiftLeftBy (32+n) x) (shiftRightZfBy (-n) x)
-      pos = or (shiftLeftBy n x) (shiftRightZfBy (32-n) x) in
-  if n<0 then neg else pos
-
-
-
 {-|
 Get index of first set bit from LSB.
-    
+
     -- x: an Int
     scan 7  == 0 (111     => 0)
     scan 12 == 2 (1100    => 2)
@@ -204,10 +212,9 @@ scan x =
   arrayGet 0 (remainderBy 37 (and (-x) x)) mod37Pos32
 
 
-
 {-|
 Gets index of first set bit from MSB.
-    
+
     -- x: an Int
     scanReverse 13 == 3 (1101 => 3)
     scanReverse 5  == 2 (101  => 2)
@@ -224,41 +231,80 @@ scanReverse x =
 
 
 
+
+-- MERGE, INTERLEAVE, ROTATE, REVERSE, SIGNEXTEND
 {-|
-Set a bit.
-    
-    -- x: an Int
-    -- i: bit index
-    -- f: bit value (1)
-    set 6 0 1 == 7 (110,0,1 => 111)
-    set 6 2 1 == 6 (110,2,1 => 110)
-    set 6 2 0 == 2 (110,2,0 => 010)
--}
-set : Int -> Int -> Int -> Int
-set x i f =
-  or (and x (complement (shiftLeftBy i 1))) (shiftLeftBy i f)
+Merge bits as per mask.
 
+    -- x: first Int
+    -- y: second Int
+    -- m: bit mask (0 => from x)
+    merge 0x12 0x24 0x0F       == 20    (0x14)
+    merge 0x1234 0xABCD 0x0F0F == 6973  (0x1B3D)
+    merge 0xAAAA 0xBBBB 0x3333 == 48059 (0xBBBB)
+-}
+merge : Int -> Int -> Int -> Int
+merge x y m =
+  bxor x (and (bxor x y) m)
 
 
 {-|
-Set bits as per mask.
-    
-    -- x: an Int
-    -- m: bit mask
-    -- f: bit value (1)
-    setAs 8 2 1          == 10   (0x8 set 0x2      => 0xA)
-    setAs 15 3 0         == 12   (0xF clear 0x3    => 0xC)
-    setAs 0x1234 0x430 1 == 5684 (0x1234 set 0x430 => 0x1634)
--}
-setAs : Int -> Int -> Int -> Int
-setAs x m f =
-  or (and x (complement m)) (and (-f) m)
+Interleave bits of two Int16s.
 
+    -- x: first Int16
+    -- y: second Int16
+    interleave 0x0000 0xFFFF == 1431655765 (0x55555555)
+    interleave 0x1234 0x1234 == 51121968   (0x030C0F30)
+    interleave 0x1234 0x4321 == 302845473  (0x120D0E21)
+-}
+interleave : Int -> Int -> Int
+interleave x y =
+  let a = and (or x (shiftLeftBy 8 x)) 0x00FF00FF
+      b = and (or a (shiftLeftBy 4 a)) 0x0F0F0F0F
+      c = and (or b (shiftLeftBy 2 b)) 0x33333333
+      d = and (or c (shiftLeftBy 1 c)) 0x55555555
+      i = and (or y (shiftLeftBy 8 y)) 0x00FF00FF
+      j = and (or i (shiftLeftBy 4 i)) 0x0F0F0F0F
+      k = and (or j (shiftLeftBy 2 j)) 0x33333333
+      l = and (or k (shiftLeftBy 1 k)) 0x55555555 in
+  or l (shiftLeftBy 1 d)
+
+
+{-|
+Rotate bits.
+
+    -- x: an Int
+    -- n: rotate amount (+ve: left, -ve: right)
+    rotate 0x11112222 4  == 286401057 (0x11122221)
+    rotate 0x11112222 -4 == 554766882 (0x21111222)
+-}
+rotate : Int -> Int -> Int
+rotate x n =
+  let neg = or (shiftLeftBy (32+n) x) (shiftRightZfBy (-n) x)
+      pos = or (shiftLeftBy n x) (shiftRightZfBy (32-n) x) in
+  if n<0 then neg else pos
+
+
+{-|
+Reverse all bits.
+
+    -- x: an Int
+    reverse 0xFFFF0000 == 65535     (0x0000FFFF)
+    reverse 0x00AABBCC == 870143232 (0x33DD5500)
+    reverse 0x1234     == 742916096 (0x2C480000)
+-}
+reverse : Int -> Int
+reverse x =
+  let a = or (and (shiftRightZfBy 1 x) 0x55555555) (shiftLeftBy 1 (and x 0x55555555))
+      b = or (and (shiftRightZfBy 2 a) 0x33333333) (shiftLeftBy 2 (and a 0x33333333))
+      c = or (and (shiftRightZfBy 4 b) 0x0F0F0F0F) (shiftLeftBy 4 (and b 0x0F0F0F0F))
+      d = or (and (shiftRightZfBy 8 c) 0x00FF00FF) (shiftLeftBy 8 (and c 0x00FF00FF)) in
+  or (shiftRightZfBy 16 d) (shiftLeftBy 16 d)
 
 
 {-|
 Sign extend variable bit-width integer.
-    
+
     -- x: variable bit-width Int
     -- w: bit width (32)
     signExtend 15 4 == -1 (1111 => -1)
@@ -269,51 +315,3 @@ signExtend : Int -> Int -> Int
 signExtend x w =
   let msb = and x (shiftLeftBy (w-1) 1) in
   if msb==0 then x else or (complement (and -1 ((shiftLeftBy w 1) - 1))) x
-
-
-
-{-|
-Swap bit sequences.
-    
-    -- x: an Int
-    -- i: first bit index
-    -- j: second bit index
-    -- n: bit width (1)
-    swap 6 1 0 1      == 5     (110    => 101)
-    swap 0x1234 8 4 4 == 4900  (0x1234 => 0x1324)
-    swap 0x4AAB 8 0 8 == 43850 (0x4AAB => 0xAB4A)
--}
-swap : Int -> Int -> Int -> Int -> Int
-swap x i j n =
-  let t = and (bxor (shiftRightZfBy i x) (shiftRightZfBy j x)) ((shiftLeftBy n 1) - 1) in
-  bxor x (or (shiftLeftBy i t) (shiftLeftBy j t))
-
-
-
-{-|
-Toggle a bit.
-    
-    -- x: an Int
-    -- i: bit index
-    toggle 6 0 == 7 (110,0 => 111)
-    toggle 6 1 == 4 (110,1 => 100)
-    toggle 6 2 == 2 (110,2 => 010)
--}
-toggle : Int -> Int -> Int
-toggle x i =
-  bxor x (shiftLeftBy i 1)
-
-
-
-{-|
-Toggle bits as per mask.
-    
-    -- x: an Int
-    -- m: bit mask
-    toggleAs 6 1 == 7 (110,000 => 111)
-    toggleAs 6 7 == 1 (110,111 => 001)
-    toggleAs 6 3 == 5 (110,011 => 101)
--}
-toggleAs : Int -> Int -> Int
-toggleAs x m =
-  bxor x m

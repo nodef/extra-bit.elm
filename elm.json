@@ -3,7 +3,7 @@
     "name": "elmw/extra-bit",
     "summary": "The bit is a basic unit of information in information theory, computing.",
     "license": "MIT",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "exposed-modules": [
         "Bit"
     ],
