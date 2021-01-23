@@ -51,6 +51,7 @@ arrayGet d i x =
 -- GET*, SET*, TOGGLE*, SWAP
 {-|
 Get a bit.
+[📘](https://github.com/elmw/extra-boolean/wiki/get)
 
     -- x: an Int
     -- i: bit index
@@ -65,6 +66,7 @@ get x i =
 
 {-|
 Get bits as per mask.
+[📘](https://github.com/elmw/extra-boolean/wiki/getAs)
 
     -- x: an Int
     -- m: bit mask
@@ -79,6 +81,7 @@ getAs x m =
 
 {-|
 Set a bit.
+[📘](https://github.com/elmw/extra-boolean/wiki/set)
 
     -- x: an Int
     -- i: bit index
@@ -94,6 +97,7 @@ set x i f =
 
 {-|
 Set bits as per mask.
+[📘](https://github.com/elmw/extra-boolean/wiki/setAs)
 
     -- x: an Int
     -- m: bit mask
@@ -109,6 +113,7 @@ setAs x m f =
 
 {-|
 Toggle a bit.
+[📘](https://github.com/elmw/extra-boolean/wiki/toggle)
 
     -- x: an Int
     -- i: bit index
@@ -123,6 +128,7 @@ toggle x i =
 
 {-|
 Toggle bits as per mask.
+[📘](https://github.com/elmw/extra-boolean/wiki/toggleAs)
 
     -- x: an Int
     -- m: bit mask
@@ -137,6 +143,7 @@ toggleAs x m =
 
 {-|
 Swap bit sequences.
+[📘](https://github.com/elmw/extra-boolean/wiki/swap)
 
     -- x: an Int
     -- i: first bit index
@@ -157,6 +164,7 @@ swap x i j n =
 -- COUNT, PARITY, SCAN*
 {-|
 Count bits set.
+[📘](https://github.com/elmw/extra-boolean/wiki/count)
 
     -- x: an Int
     count 7  == 3 (111    => 3)
@@ -172,6 +180,7 @@ count x =
 
 {-|
 Get n-bit parity.
+[📘](https://github.com/elmw/extra-boolean/wiki/parity)
 
     -- x: an Int
     -- n: number of bits (1)
@@ -201,6 +210,7 @@ parityLoop a x n m =
 
 {-|
 Get index of first set bit from LSB.
+[📘](https://github.com/elmw/extra-boolean/wiki/scan)
 
     -- x: an Int
     scan 7  == 0 (111     => 0)
@@ -214,6 +224,7 @@ scan x =
 
 {-|
 Gets index of first set bit from MSB.
+[📘](https://github.com/elmw/extra-boolean/wiki/scanReverse)
 
     -- x: an Int
     scanReverse 13 == 3 (1101 => 3)
@@ -235,6 +246,7 @@ scanReverse x =
 -- MERGE, INTERLEAVE, ROTATE, REVERSE, SIGNEXTEND
 {-|
 Merge bits as per mask.
+[📘](https://github.com/elmw/extra-boolean/wiki/merge)
 
     -- x: first Int
     -- y: second Int
@@ -250,6 +262,7 @@ merge x y m =
 
 {-|
 Interleave bits of two Int16s.
+[📘](https://github.com/elmw/extra-boolean/wiki/interleave)
 
     -- x: first Int16
     -- y: second Int16
@@ -272,6 +285,7 @@ interleave x y =
 
 {-|
 Rotate bits.
+[📘](https://github.com/elmw/extra-boolean/wiki/rotate)
 
     -- x: an Int
     -- n: rotate amount (+ve: left, -ve: right)
@@ -287,6 +301,7 @@ rotate x n =
 
 {-|
 Reverse all bits.
+[📘](https://github.com/elmw/extra-boolean/wiki/reverse)
 
     -- x: an Int
     reverse 0xFFFF0000 == 65535     (0x0000FFFF)
@@ -304,6 +319,7 @@ reverse x =
 
 {-|
 Sign extend variable bit-width integer.
+[📘](https://github.com/elmw/extra-boolean/wiki/signExtend)
 
     -- x: variable bit-width Int
     -- w: bit width (32)
