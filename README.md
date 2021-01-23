@@ -71,4 +71,34 @@ signExtend 15 4
 <br>
 <br>
 
+
+## References
+
+- [Bit], [Nibble], [Byte], [Word]
+- [Kilobit], [Kilobyte], [Kibibit], [Kibibyte]
+- [Bit field], [Bit array], [Bitwise operation], [Mask]
+- [Bit manipulation], [Bit manipulation instruction set], [Bit banging]
+
+[Bit]: https://en.wikipedia.org/wiki/Bit
+[Nibble]: https://en.wikipedia.org/wiki/Nibble
+[Byte]: https://en.wikipedia.org/wiki/Byte
+[Word]: https://en.wikipedia.org/wiki/Word_(computer_architecture)
+
+[Kilobit]: https://en.wikipedia.org/wiki/Kilobit
+[Kilobyte]: https://en.wikipedia.org/wiki/Kilobyte
+[Kibibit]: https://en.wikipedia.org/wiki/Kibibit
+[Kibibyte]: https://en.wikipedia.org/wiki/Kibibyte
+
+[Bit field]: https://en.wikipedia.org/wiki/Bit_field
+[Bit array]: https://en.wikipedia.org/wiki/Bit_array
+[Bitwise operation]: https://en.wikipedia.org/wiki/Bitwise_operation
+[Mask]: https://en.wikipedia.org/wiki/Mask_(computing)
+
+[Bit manipulation]: https://en.wikipedia.org/wiki/Bit_manipulation
+[Bit manipulation instruction set]: https://en.wikipedia.org/wiki/Bit_manipulation_instruction_set
+[Bit banging]: https://en.wikipedia.org/wiki/Bit_banging
+
+<br>
+<br>
+
 [![](https://img.youtube.com/vi/4_zSIXb7tLQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=4_zSIXb7tLQ)
