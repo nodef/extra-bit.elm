@@ -44,29 +44,27 @@ signExtend 15 4
 | [set]        | Set a bit.                              |
 | [toggle]     | Toggle a bit.                           |
 | [swap]       | Swap bit sequences.                     |
-| [scan]       | Get index of first set bit from LSB.    |
 | [count]      | Count bits set.                         |
 | [parity]     | Get n-bit parity.                       |
-| [rotate]     | Rotate bits.                            |
-| [reverse]    | Reverse all bits.                       |
+| [scan]       | Get index of first set bit from LSB.    |
 | [merge]      | Merge bits as per mask.                 |
 | [interleave] | Interleave bits of two int16s.          |
+| [rotate]     | Rotate bits.                            |
+| [reverse]    | Reverse all bits.                       |
 | [signExtend] | Sign extend variable bit-width integer. |
 
 [get]: https://github.com/elmw/extra-bit/wiki/get
 [set]: https://github.com/elmw/extra-bit/wiki/set
-[setAs]: https://github.com/elmw/extra-bit/wiki/setAs
+[toggle]: https://github.com/elmw/extra-bit/wiki/toggle
 [swap]: https://github.com/elmw/extra-bit/wiki/swap
-[scan]: https://github.com/elmw/extra-bit/wiki/scan
-[scanReverse]: https://github.com/elmw/extra-bit/wiki/scanReverse
 [count]: https://github.com/elmw/extra-bit/wiki/count
 [parity]: https://github.com/elmw/extra-bit/wiki/parity
-[reverse]: https://github.com/elmw/extra-bit/wiki/reverse
+[scan]: https://github.com/elmw/extra-bit/wiki/scan
 [merge]: https://github.com/elmw/extra-bit/wiki/merge
 [interleave]: https://github.com/elmw/extra-bit/wiki/interleave
-[signExtend]: https://github.com/elmw/extra-bit/wiki/signExtend
-[toggle]: https://github.com/elmw/extra-bit/wiki/toggle
 [rotate]: https://github.com/elmw/extra-bit/wiki/rotate
+[reverse]: https://github.com/elmw/extra-bit/wiki/reverse
+[signExtend]: https://github.com/elmw/extra-bit/wiki/signExtend
 
 <br>
 <br>
