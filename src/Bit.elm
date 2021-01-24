@@ -55,9 +55,9 @@ Get a bit.
 
     -- x: an Int
     -- i: bit index
-    get 6 0 == 0 (110,0 => 0)
-    get 6 1 == 1 (110,1 => 1)
-    get 6 2 == 1 (110,2 => 1)
+    get 6 0 == 0  -- 110,0 ⇒ 0
+    get 6 1 == 1  -- 110,1 ⇒ 1
+    get 6 2 == 1  -- 110,2 ⇒ 1
 -}
 get : Int -> Int -> Int
 get x i =
@@ -70,9 +70,9 @@ Get bits as per mask.
 
     -- x: an Int
     -- m: bit mask
-    getAs 6 4 == 4 (110,100 => 100)
-    getAs 6 7 == 6 (110,111 => 110)
-    getAs 6 5 == 4 (110,101 => 100)
+    getAs 6 4 == 4  -- 110,100 ⇒ 100
+    getAs 6 7 == 6  -- 110,111 ⇒ 110
+    getAs 6 5 == 4  -- 110,101 ⇒ 100
 -}
 getAs : Int -> Int -> Int
 getAs x m =
@@ -86,9 +86,9 @@ Set a bit.
     -- x: an Int
     -- i: bit index
     -- f: bit value (1)
-    set 6 0 1 == 7 (110,0,1 => 111)
-    set 6 2 1 == 6 (110,2,1 => 110)
-    set 6 2 0 == 2 (110,2,0 => 010)
+    set 6 0 1 == 7  -- 110,0,1 ⇒ 111
+    set 6 2 1 == 6  -- 110,2,1 ⇒ 110
+    set 6 2 0 == 2  -- 110,2,0 ⇒ 010
 -}
 set : Int -> Int -> Int -> Int
 set x i f =
@@ -102,9 +102,9 @@ Set bits as per mask.
     -- x: an Int
     -- m: bit mask
     -- f: bit value (1)
-    setAs 8 2 1          == 10   (0x8 set 0x2      => 0xA)
-    setAs 15 3 0         == 12   (0xF clear 0x3    => 0xC)
-    setAs 0x1234 0x430 1 == 5684 (0x1234 set 0x430 => 0x1634)
+    setAs 8 2 1          == 10    -- 0x8 set 0x2      ⇒ 0xA
+    setAs 15 3 0         == 12    -- 0xF clear 0x3    ⇒ 0xC
+    setAs 0x1234 0x430 1 == 5684  -- 0x1234 set 0x430 ⇒ 0x1634
 -}
 setAs : Int -> Int -> Int -> Int
 setAs x m f =
@@ -117,9 +117,9 @@ Toggle a bit.
 
     -- x: an Int
     -- i: bit index
-    toggle 6 0 == 7 (110,0 => 111)
-    toggle 6 1 == 4 (110,1 => 100)
-    toggle 6 2 == 2 (110,2 => 010)
+    toggle 6 0 == 7  -- 110,0 ⇒ 111
+    toggle 6 1 == 4  -- 110,1 ⇒ 100
+    toggle 6 2 == 2  -- 110,2 ⇒ 010
 -}
 toggle : Int -> Int -> Int
 toggle x i =
@@ -132,9 +132,9 @@ Toggle bits as per mask.
 
     -- x: an Int
     -- m: bit mask
-    toggleAs 6 1 == 7 (110,000 => 111)
-    toggleAs 6 7 == 1 (110,111 => 001)
-    toggleAs 6 3 == 5 (110,011 => 101)
+    toggleAs 6 1 == 7  -- 110,000 ⇒ 111
+    toggleAs 6 7 == 1  -- 110,111 ⇒ 001
+    toggleAs 6 3 == 5  -- 110,011 ⇒ 101
 -}
 toggleAs : Int -> Int -> Int
 toggleAs x m =
@@ -149,9 +149,9 @@ Swap bit sequences.
     -- i: first bit index
     -- j: second bit index
     -- n: bit width (1)
-    swap 6 1 0 1      == 5     (110    => 101)
-    swap 0x1234 8 4 4 == 4900  (0x1234 => 0x1324)
-    swap 0x4AAB 8 0 8 == 43850 (0x4AAB => 0xAB4A)
+    swap 6 1 0 1      == 5      -- 110    ⇒ 101
+    swap 0x1234 8 4 4 == 4900   -- 0x1234 ⇒ 0x1324
+    swap 0x4AAB 8 0 8 == 43850  -- 0x4AAB ⇒ 0xAB4A
 -}
 swap : Int -> Int -> Int -> Int -> Int
 swap x i j n =
@@ -167,9 +167,9 @@ Count bits set.
 [📘](https://github.com/elmw/extra-boolean/wiki/count)
 
     -- x: an Int
-    count 7  == 3 (111    => 3)
-    count 12 == 2 (1100   => 2)
-    count 63 == 6 (111111 => 6)
+    count 7  == 3  -- 111    ⇒ 3
+    count 12 == 2  -- 1100   ⇒ 2
+    count 63 == 6  -- 111111 ⇒ 6
 -}
 count : Int -> Int
 count x =
@@ -184,10 +184,10 @@ Get n-bit parity.
 
     -- x: an Int
     -- n: number of bits (1)
-    parity 7 1  == 1  (1,1,1   => 1)
-    parity 5 1  == 0  (1,0,1   => 0)
-    parity 8 2  == 2  (10,00   => 10)
-    parity 63 4 == 12 (11,1111 => 1100)
+    parity 7 1  == 1   -- 1,1,1   ⇒ 1
+    parity 5 1  == 0   -- 1,0,1   ⇒ 0
+    parity 8 2  == 2   -- 10,00   ⇒ 10
+    parity 63 4 == 12  -- 11,1111 ⇒ 1100
 -}
 parity : Int -> Int -> Int
 parity x n =
@@ -213,9 +213,9 @@ Get index of first set bit from LSB.
 [📘](https://github.com/elmw/extra-boolean/wiki/scan)
 
     -- x: an Int
-    scan 7  == 0 (111     => 0)
-    scan 12 == 2 (1100    => 2)
-    scan 64 == 6 (1000000 => 6)
+    scan 7  == 0  -- 111     ⇒ 0
+    scan 12 == 2  -- 1100    ⇒ 2
+    scan 64 == 6  -- 1000000 ⇒ 6
 -}
 scan : Int -> Int
 scan x =
@@ -227,9 +227,9 @@ Gets index of first set bit from MSB.
 [📘](https://github.com/elmw/extra-boolean/wiki/scanReverse)
 
     -- x: an Int
-    scanReverse 13 == 3 (1101 => 3)
-    scanReverse 5  == 2 (101  => 2)
-    scanReverse 1  == 0 (1    => 0)
+    scanReverse 13 == 3  -- 1101 ⇒ 3
+    scanReverse 5  == 2  -- 101  ⇒ 2
+    scanReverse 1  == 0  -- 1    ⇒ 0
 -}
 scanReverse : Int -> Int
 scanReverse x =
@@ -250,10 +250,10 @@ Merge bits as per mask.
 
     -- x: first Int
     -- y: second Int
-    -- m: bit mask (0 => from x)
-    merge 0x12 0x24 0x0F       == 20    (0x14)
-    merge 0x1234 0xABCD 0x0F0F == 6973  (0x1B3D)
-    merge 0xAAAA 0xBBBB 0x3333 == 48059 (0xBBBB)
+    -- m: bit mask (0 ⇒ from x)
+    merge 0x12 0x24 0x0F       == 20     -- 0x14
+    merge 0x1234 0xABCD 0x0F0F == 6973   -- 0x1B3D
+    merge 0xAAAA 0xBBBB 0x3333 == 48059  -- 0xBBBB
 -}
 merge : Int -> Int -> Int -> Int
 merge x y m =
@@ -266,9 +266,9 @@ Interleave bits of two Int16s.
 
     -- x: first Int16
     -- y: second Int16
-    interleave 0x0000 0xFFFF == 1431655765 (0x55555555)
-    interleave 0x1234 0x1234 == 51121968   (0x030C0F30)
-    interleave 0x1234 0x4321 == 302845473  (0x120D0E21)
+    interleave 0x0000 0xFFFF == 1431655765  -- 0x55555555
+    interleave 0x1234 0x1234 == 51121968    -- 0x030C0F30
+    interleave 0x1234 0x4321 == 302845473   -- 0x120D0E21
 -}
 interleave : Int -> Int -> Int
 interleave x y =
@@ -289,8 +289,8 @@ Rotate bits.
 
     -- x: an Int
     -- n: rotate amount (+ve: left, -ve: right)
-    rotate 0x11112222 4  == 286401057 (0x11122221)
-    rotate 0x11112222 -4 == 554766882 (0x21111222)
+    rotate 0x11112222 4  == 286401057  -- 0x11122221
+    rotate 0x11112222 -4 == 554766882  -- 0x21111222
 -}
 rotate : Int -> Int -> Int
 rotate x n =
@@ -304,9 +304,9 @@ Reverse all bits.
 [📘](https://github.com/elmw/extra-boolean/wiki/reverse)
 
     -- x: an Int
-    reverse 0xFFFF0000 == 65535     (0x0000FFFF)
-    reverse 0x00AABBCC == 870143232 (0x33DD5500)
-    reverse 0x1234     == 742916096 (0x2C480000)
+    reverse 0xFFFF0000 == 65535      -- 0x0000FFFF
+    reverse 0x00AABBCC == 870143232  -- 0x33DD5500
+    reverse 0x1234     == 742916096  -- 0x2C480000
 -}
 reverse : Int -> Int
 reverse x =
@@ -323,9 +323,9 @@ Sign extend variable bit-width integer.
 
     -- x: variable bit-width Int
     -- w: bit width (32)
-    signExtend 15 4 == -1 (1111 => -1)
-    signExtend 3 3  == 3  (011  => 3)
-    signExtend 4 3  == -4 (100  => -4)
+    signExtend 15 4 == -1  -- 1111 ⇒ -1
+    signExtend 3 3  == 3   -- 011  ⇒ 3
+    signExtend 4 3  == -4  -- 100  ⇒ -4
 -}
 signExtend : Int -> Int -> Int
 signExtend x w =

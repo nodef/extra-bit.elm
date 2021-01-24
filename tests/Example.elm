@@ -12,11 +12,11 @@ import Bit exposing (..)
 getTests : Test
 getTests =
   describe "get x i" [
-    test "get 6 0 == 0 (110,0 => 0)" <|
+    test "get 6 0 == 0 (110,0 ⇒ 0)" <|
       \_ -> get 6 0 |> equal 0,
-    test "get 6 1 == 1 (110,1 => 1)" <|
+    test "get 6 1 == 1 (110,1 ⇒ 1)" <|
       \_ -> get 6 1 |> equal 1,
-    test "get 6 2 == 1 (110,2 => 1)" <|
+    test "get 6 2 == 1 (110,2 ⇒ 1)" <|
       \_ -> get 6 2 |> equal 1
   ]
 
@@ -24,11 +24,11 @@ getTests =
 getAsTests : Test
 getAsTests =
   describe "getAs x m" [
-    test "getAs 6 4 == 4 (110,100 => 100)" <|
+    test "getAs 6 4 == 4 (110,100 ⇒ 100)" <|
       \_ -> getAs 6 4 |> equal 4,
-    test "getAs 6 7 == 6 (110,111 => 110)" <|
+    test "getAs 6 7 == 6 (110,111 ⇒ 110)" <|
       \_ -> getAs 6 7 |> equal 6,
-    test "getAs 6 5 == 4 (110,101 => 100)" <|
+    test "getAs 6 5 == 4 (110,101 ⇒ 100)" <|
       \_ -> getAs 6 5 |> equal 4
   ]
 
@@ -36,11 +36,11 @@ getAsTests =
 setTests : Test
 setTests =
   describe "set x i f" [
-    test "set 6 0 1 == 7 (110,0,1 => 111)" <|
+    test "set 6 0 1 == 7 (110,0,1 ⇒ 111)" <|
       \_ -> set 6 0 1 |> equal 7,
-    test "set 6 2 1 == 6 (110,2,1 => 110)" <|
+    test "set 6 2 1 == 6 (110,2,1 ⇒ 110)" <|
       \_ -> set 6 2 1 |> equal 6,
-    test "set 6 2 0 == 2 (110,2,0 => 010)" <|
+    test "set 6 2 0 == 2 (110,2,0 ⇒ 010)" <|
       \_ -> set 6 2 0 |> equal 2
   ]
 
@@ -48,11 +48,11 @@ setTests =
 setAsTests : Test
 setAsTests =
   describe "setAs x m f" [
-    test "setAs 8 2 1          == 10   (0x8 set 0x2      => 0xA)" <|
+    test "setAs 8 2 1          == 10   (0x8 set 0x2      ⇒ 0xA)" <|
       \_ -> setAs 8 2 1 |> equal 10,
-    test "setAs 15 3 0         == 12   (0xF clear 0x3    => 0xC)" <|
+    test "setAs 15 3 0         == 12   (0xF clear 0x3    ⇒ 0xC)" <|
       \_ -> setAs 15 3 0 |> equal 12,
-    test "setAs 0x1234 0x430 1 == 5684 (0x1234 set 0x430 => 0x1634)" <|
+    test "setAs 0x1234 0x430 1 == 5684 (0x1234 set 0x430 ⇒ 0x1634)" <|
       \_ -> setAs 0x1234 0x430 1 |> equal 5684
   ]
 
@@ -60,11 +60,11 @@ setAsTests =
 toggleTests : Test
 toggleTests =
   describe "toggle x i" [
-    test "toggle 6 0 == 7 (110,0 => 111)" <|
+    test "toggle 6 0 == 7 (110,0 ⇒ 111)" <|
       \_ -> toggle 6 0 |> equal 7,
-    test "toggle 6 1 == 4 (110,1 => 100)" <|
+    test "toggle 6 1 == 4 (110,1 ⇒ 100)" <|
       \_ -> toggle 6 1 |> equal 4,
-    test "toggle 6 2 == 2 (110,2 => 010)" <|
+    test "toggle 6 2 == 2 (110,2 ⇒ 010)" <|
       \_ -> toggle 6 2 |> equal 2
   ]
 
@@ -72,11 +72,11 @@ toggleTests =
 toggleAsTests : Test
 toggleAsTests =
   describe "toggleAs x m" [
-    test "toggleAs 6 1 == 7 (110,000 => 111)" <|
+    test "toggleAs 6 1 == 7 (110,000 ⇒ 111)" <|
       \_ -> toggleAs 6 1 |> equal 7,
-    test "toggleAs 6 7 == 1 (110,111 => 001)" <|
+    test "toggleAs 6 7 == 1 (110,111 ⇒ 001)" <|
       \_ -> toggleAs 6 7 |> equal 1,
-    test "toggleAs 6 3 == 5 (110,011 => 101)" <|
+    test "toggleAs 6 3 == 5 (110,011 ⇒ 101)" <|
       \_ -> toggleAs 6 3 |> equal 5
   ]
 
@@ -84,11 +84,11 @@ toggleAsTests =
 swapTests : Test
 swapTests =
   describe "swap x i j n" [
-    test "swap 6 1 0 1      == 5     (110    => 101)" <|
+    test "swap 6 1 0 1      == 5     (110    ⇒ 101)" <|
       \_ -> swap 6 1 0 1 |> equal 5,
-    test "swap 0x1234 8 4 4 == 4900  (0x1234 => 0x1324)" <|
+    test "swap 0x1234 8 4 4 == 4900  (0x1234 ⇒ 0x1324)" <|
       \_ -> swap 0x1234 8 4 4 |> equal 0x1324,
-    test "swap 0x4AAB 8 0 8 == 43850 (0x4AAB => 0xAB4A)" <|
+    test "swap 0x4AAB 8 0 8 == 43850 (0x4AAB ⇒ 0xAB4A)" <|
       \_ -> swap 0x4AAB 8 0 8 |> equal 0xAB4A
   ]
 
@@ -99,11 +99,11 @@ swapTests =
 countTests : Test
 countTests =
   describe "count x" [
-    test "count 7  == 3 (111    => 3)" <|
+    test "count 7  == 3 (111    ⇒ 3)" <|
       \_ -> count 7 |> equal 3,
-    test "count 12 == 2 (1100   => 2)" <|
+    test "count 12 == 2 (1100   ⇒ 2)" <|
       \_ -> count 12 |> equal 2,
-    test "count 63 == 6 (111111 => 6)" <|
+    test "count 63 == 6 (111111 ⇒ 6)" <|
       \_ -> count 63 |> equal 6
   ]
 
@@ -111,13 +111,13 @@ countTests =
 parityTests : Test
 parityTests =
   describe "parity x n" [
-    test "parity 7 1  == 1  (1,1,1   => 1)" <|
+    test "parity 7 1  == 1  (1,1,1   ⇒ 1)" <|
       \_ -> parity 7 1 |> equal 1,
-    test "parity 5 1  == 0  (1,0,1   => 0)" <|
+    test "parity 5 1  == 0  (1,0,1   ⇒ 0)" <|
       \_ -> parity 5 1 |> equal 0,
-    test "parity 8 2  == 2  (10,00   => 10)" <|
+    test "parity 8 2  == 2  (10,00   ⇒ 10)" <|
       \_ -> parity 8 2 |> equal 2,
-    test "parity 63 4 == 12 (11,1111 => 1100)" <|
+    test "parity 63 4 == 12 (11,1111 ⇒ 1100)" <|
       \_ -> parity 63 4 |> equal 12
   ]
 
@@ -125,11 +125,11 @@ parityTests =
 scanTests : Test
 scanTests =
   describe "scan x" [
-    test "scan 7  == 0 (111     => 0)" <|
+    test "scan 7  == 0 (111     ⇒ 0)" <|
       \_ -> scan 7 |> equal 0,
-    test "scan 12 == 2 (1100    => 2)" <|
+    test "scan 12 == 2 (1100    ⇒ 2)" <|
       \_ -> scan 12 |> equal 2,
-    test "scan 64 == 6 (1000000 => 6)" <|
+    test "scan 64 == 6 (1000000 ⇒ 6)" <|
       \_ -> scan 64 |> equal 6
   ]
 
@@ -137,11 +137,11 @@ scanTests =
 scanReverseTests : Test
 scanReverseTests =
   describe "scanReverse x" [
-    test "scanReverse 13 == 3 (1101 => 3)" <|
+    test "scanReverse 13 == 3 (1101 ⇒ 3)" <|
       \_ -> scanReverse 13 |> equal 3,
-    test "scanReverse 5  == 2 (101  => 2)" <|
+    test "scanReverse 5  == 2 (101  ⇒ 2)" <|
       \_ -> scanReverse 5 |> equal 2,
-    test "scanReverse 1  == 0 (1    => 0)" <|
+    test "scanReverse 1  == 0 (1    ⇒ 0)" <|
       \_ -> scanReverse 1 |> equal 0
   ]
 
@@ -198,10 +198,10 @@ reverseTests =
 signExtendTests : Test
 signExtendTests =
   describe "signExtend x w" [
-    test "signExtend 15 4 == -1 (1111 => -1)" <|
+    test "signExtend 15 4 == -1 (1111 ⇒ -1)" <|
       \_ -> signExtend 15 4 |> equal -1,
-    test "signExtend 3 3  == 3  (011  => 3)" <|
+    test "signExtend 3 3  == 3  (011  ⇒ 3)" <|
       \_ -> signExtend 3 3 |> equal 3,
-    test "signExtend 4 3  == -4 (100  => -4)" <|
+    test "signExtend 4 3  == -4 (100  ⇒ -4)" <|
       \_ -> signExtend 4 3 |> equal -4
   ]

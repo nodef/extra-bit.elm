@@ -17,13 +17,13 @@ This package includes [bit twiddling hacks] by Sean Eron Anderson and many other
 import Bit exposing (..)
 
 count 7
--- 3 (111 => 3)
+-- 3 (111 ⇒ 3)
 
 parity 8 2
--- 2 (10,00 => 10)
+-- 2 (10,00 ⇒ 10)
 
 swap 6 1 0 1
--- 5 (110 => 101)
+-- 5 (110 ⇒ 101)
 
 reverse 0xFFFF0000
 -- 65535 (0x0000FFFF)
