@@ -2,9 +2,9 @@ language: elm
 if: branch = main
 
 install:
-- git clone https://${GITHUB_TOKEN}@github.com/elmw/deploy "$HOME/deploy"
-- chmod 777 "$HOME/deploy/"*.sh
-- bash "$HOME/deploy/install.sh"
+- if [[ "$GITHUB_TOKEN" != "" ]]; then git clone https://${GITHUB_TOKEN}@github.com/elmw/deploy "$HOME/deploy"; fi
+- if [[ -d ~/deploy ]]; then bash "$HOME/deploy/install.sh"; fi
 
 script:
-- bash "$HOME/deploy/script.sh"
+- if [[ ! -d "$HOME/deploy" ]]; then elm-test; fi
+- if [[ -d "$HOME/deploy" ]]; then bash "$HOME/deploy/script.sh"; fi
